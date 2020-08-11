@@ -16,31 +16,26 @@ message(defines: $$DEFINES)
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 INCLUDEPATH += \
-    easylogger/inc/ \
-    easylogger/port/ \
-    easylogger/src/ \
-    easylogger/plugins/file/ \
+    tools/easylogger/inc/ \
+    tools/easylogger/port/ \
+    tools/easylogger/src/ \
+    tools/easylogger/plugins/file/ \
 
 HEADERS += \
-    easylogger/inc/elog.h \
-#    easylogger/inc/elog_cfg.h \
-    easylogger/plugins/file/elog_file.h \
-#    easylogger/plugins/file/elog_file_cfg.h \
+    tools/easylogger/inc/elog.h \
+    tools/easylogger/plugins/file/elog_file.h \
     mainwindow.h \
 
 SOURCES += \
-    easylogger/plugins/file/elog_file.c \
-#    easylogger/plugins/file/elog_file_port.c \
-#    easylogger/port/elog_port.c \
-    easylogger/src/elog.c \
-    easylogger/src/elog_async.c \
-    easylogger/src/elog_buf.c \
-    easylogger/src/elog_utils.c \
+    tools/easylogger/plugins/file/elog_file.c \
+    tools/easylogger/src/elog.c \
+    tools/easylogger/src/elog_async.c \
+    tools/easylogger/src/elog_buf.c \
+    tools/easylogger/src/elog_utils.c \
     main.cpp \
     mainwindow.cpp \
 
 contains(DEFINES,WIN32){
-    message("detect windows")
 INCLUDEPATH += \
     os/windows/easylogger/inc/
 
@@ -52,10 +47,6 @@ SOURCES += \
     os/windows/easylogger/port/elog_file_port.c \
     os/windows/easylogger/port/elog_port.c
 }else{
-}
-
-if(contains(DEFINES,LINUX)){
-    message("detect linux")
 INCLUDEPATH += \
     os/linux/easylogger/inc/
 
@@ -66,7 +57,6 @@ HEADERS += \
 SOURCES += \
     os/linux/easylogger/port/elog_file_port.c \
     os/linux/easylogger/port/elog_port.c \
-}else{
 }
 
 FORMS += \
